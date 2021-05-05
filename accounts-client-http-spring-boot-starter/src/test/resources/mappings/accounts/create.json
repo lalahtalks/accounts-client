@@ -1,0 +1,26 @@
+{
+  "request": {
+    "urlPath": "/accounts/accounts",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer abc"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{ \"email\": \"test@test.com\" }"
+      }
+    ]
+  },
+  "response": {
+    "status": 202,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountId": "account_1",
+      "createdAt": "2021-06-01T00:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+lalahtalks:
+  accounts-http-api:
+    url: http://localhost:${wiremock.server.port}/accounts
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          lalahtalks:
+            authorization-grant-type: client_credentials
+            client-id: user
+            client-secret: password
+        provider:
+          lalahtalks:
+            token-uri: http://localhost:${wiremock.server.port}/oauth/token
