@@ -9,7 +9,10 @@
     },
     "bodyPatterns": [
       {
-        "equalToJson": "{ \"email\": \"test@test.com\" }"
+        "equalToJson": {
+          "email": "test@test.com",
+          "password": "my_password"
+        }
       }
     ]
   },

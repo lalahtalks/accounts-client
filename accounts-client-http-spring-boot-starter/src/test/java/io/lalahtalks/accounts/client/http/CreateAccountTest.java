@@ -20,6 +20,7 @@ public class CreateAccountTest {
 
     public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_DTO = AccountCreationRequestDto.builder()
             .email("test@test.com")
+            .password("my_password")
             .build();
 
     private static final AccountCreatedDto ACCOUNT_CREATED_DTO = AccountCreatedDto.builder()
