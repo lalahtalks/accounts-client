@@ -28,7 +28,7 @@ public class AccountsHttpErrorHandler {
 
     public boolean canBeHandled(HttpStatus status) {
         return Stream.of(AccountsProblemType.values())
-                .anyMatch(errorType -> errorType.getHttpStatusCode() == status.value());
+                .anyMatch(errorType -> errorType.getHttpStatus().getStatusCode() == status.value());
     }
 
     public Mono<Throwable> handleError(ClientResponse response) {
