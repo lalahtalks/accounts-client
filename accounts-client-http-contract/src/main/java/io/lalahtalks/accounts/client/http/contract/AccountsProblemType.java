@@ -11,7 +11,7 @@ import java.net.URI;
 public enum AccountsProblemType implements ProblemType {
 
     ACCOUNT_ALREADY_EXISTS(
-            URI.create("/problem/account-already-exists"),
+            URI.create("urn:lalahtalks:problem:accounts:account-already-exists"),
             "Account already exists",
             409),
 

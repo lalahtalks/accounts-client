@@ -17,9 +17,9 @@ public class AccountsHttpClientAutoConfiguration {
     private final WebClientFactory webClientFactory;
 
     @Bean
-    public AccountsHttpClient accountsHttpClient() {
+    public AccountsHttpClient accountsHttpClient(AccountsHttpErrorHandler errorHandler) {
         var webClient = webClientFactory.create(clientProperties);
-        return new AccountsHttpClient(webClient);
+        return new AccountsHttpClient(errorHandler, webClient);
     }
 
 }
