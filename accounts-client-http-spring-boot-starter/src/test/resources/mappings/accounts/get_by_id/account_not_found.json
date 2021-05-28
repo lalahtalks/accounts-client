@@ -1,0 +1,22 @@
+{
+  "request": {
+    "urlPath": "/accounts/accounts/account_2",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer abc"
+      }
+    }
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "type": "urn:lalahtalks:problem:accounts:account-not-found",
+      "title": "Account not found",
+      "status": 404
+    }
+  }
+}

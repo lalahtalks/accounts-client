@@ -1,0 +1,22 @@
+{
+  "request": {
+    "urlPath": "/accounts/accounts/account_1",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer abc"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "account_1",
+      "email": "test@test.com",
+      "createdAt": "2012-12-21T12:00:00Z"
+    }
+  }
+}
