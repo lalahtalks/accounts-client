@@ -11,6 +11,9 @@ public class AccountCreationRequestDto {
     @JsonProperty("email")
     private String email;
 
+    @JsonProperty("username")
+    private String username;
+
     @JsonProperty("password")
     private String password;
 

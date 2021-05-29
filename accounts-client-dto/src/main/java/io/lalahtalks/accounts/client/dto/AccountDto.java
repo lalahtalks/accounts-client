@@ -16,6 +16,9 @@ public class AccountDto {
     @JsonProperty("email")
     private String email;
 
+    @JsonProperty("username")
+    private String username;
+
     @JsonProperty("createdAt")
     private Instant createdAt;
 

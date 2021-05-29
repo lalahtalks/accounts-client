@@ -14,21 +14,25 @@ public class DataAccount {
     public static final String ACCOUNT_1_ID_VALUE = "account_1";
     public static final String ACCOUNT_2_ID_VALUE = "account_2";
     public static final String ACCOUNT_1_EMAIL_VALUE = "test@test.com";
+    public static final String ACCOUNT_1_USERNAME_VALUE = "User 1";
     public static final String A_PASSWORD = "my_password";
 
     public static final AccountDto ACCOUNT_1_DTO = AccountDto.builder()
             .id(ACCOUNT_1_ID_VALUE)
             .email(ACCOUNT_1_EMAIL_VALUE)
+            .username(ACCOUNT_1_USERNAME_VALUE)
             .createdAt(NOW)
             .build();
 
     public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_1_DTO = AccountCreationRequestDto.builder()
             .email(ACCOUNT_1_EMAIL_VALUE)
+            .username(ACCOUNT_1_USERNAME_VALUE)
             .password(A_PASSWORD)
             .build();
 
     public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_2_DTO = AccountCreationRequestDto.builder()
             .email("already_exists@test.com")
+            .username(ACCOUNT_1_USERNAME_VALUE)
             .password(A_PASSWORD)
             .build();
 
