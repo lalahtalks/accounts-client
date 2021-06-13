@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @SpringBootTest(classes = TestApplication.class)
 @AutoConfigureWireMock(port = 0)
 @ActiveProfiles("test")
-public class AccountCreationTest {
+class CreateAccountTest {
 
     @Autowired
     private AccountsHttpClient accountsHttpClient;
