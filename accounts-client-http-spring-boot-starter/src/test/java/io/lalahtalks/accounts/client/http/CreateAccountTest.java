@@ -1,24 +1,14 @@
 package io.lalahtalks.accounts.client.http;
 
-import io.lalahtalks.accounts.client.http.exception.AccountAlreadyExistsException;
-import io.lalahtalks.accounts.client.http.test.TestApplication;
+import io.lalahtalks.accounts.client.http.contract.problem.AccountAlreadyExistsProblem;
+import io.lalahtalks.accounts.client.http.test.SpringContextAware;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.test.context.ActiveProfiles;
 
 import static io.lalahtalks.accounts.client.http.test.DataAccount.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@SpringBootTest(classes = TestApplication.class)
-@AutoConfigureWireMock(port = 0)
-@ActiveProfiles("test")
-class CreateAccountTest {
-
-    @Autowired
-    private AccountsHttpClient accountsHttpClient;
+class CreateAccountTest extends SpringContextAware {
 
     @Test
     void it_works() {
@@ -28,8 +18,9 @@ class CreateAccountTest {
 
     @Test
     void account_already_exists() {
-        assertThatExceptionOfType(AccountAlreadyExistsException.class)
-                .isThrownBy(() -> accountsHttpClient.create(ACCOUNT_CREATION_REQUEST_2_DTO));
+        assertThatExceptionOfType(AccountAlreadyExistsProblem.class)
+                .isThrownBy(() -> accountsHttpClient.create(ACCOUNT_CREATION_REQUEST_2_DTO))
+                .withMessage("Account already exists: Some detail");
     }
 
 }

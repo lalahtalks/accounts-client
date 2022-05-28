@@ -3,12 +3,9 @@ package io.lalahtalks.accounts.client.http.test;
 import io.lalahtalks.accounts.client.dto.AccountCreatedDto;
 import io.lalahtalks.accounts.client.dto.AccountCreationRequestDto;
 import io.lalahtalks.accounts.client.dto.AccountDto;
-import lombok.NoArgsConstructor;
 
 import static io.lalahtalks.accounts.client.http.test.DataInstant.NOW;
-import static lombok.AccessLevel.PRIVATE;
 
-@NoArgsConstructor(access = PRIVATE)
 public class DataAccount {
 
     public static final String ACCOUNT_1_ID_VALUE = "account_1";
@@ -40,5 +37,9 @@ public class DataAccount {
             .accountId(ACCOUNT_1_ID_VALUE)
             .createdAt(NOW)
             .build();
+
+    private DataAccount() {
+
+    }
 
 }

@@ -3,19 +3,24 @@ package io.lalahtalks.accounts.client.http;
 import io.lalahtalks.accounts.client.dto.AccountCreatedDto;
 import io.lalahtalks.accounts.client.dto.AccountCreationRequestDto;
 import io.lalahtalks.accounts.client.dto.AccountDto;
-import lombok.RequiredArgsConstructor;
+import io.lalahtalks.accounts.client.http.contract.problem.AccountsProblem;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
+import reactor.core.publisher.Mono;
 
 import static io.lalahtalks.accounts.client.http.contract.AccountsHttpPaths.ACCOUNTS_PATH;
 import static io.lalahtalks.accounts.client.http.contract.AccountsHttpPaths.ACCOUNT_PATH;
 
-@RequiredArgsConstructor
 public class AccountsHttpClient {
 
-    private final AccountsHttpErrorHandler errorHandler;
     private final WebClient webClient;
+
+    public AccountsHttpClient(WebClient webClient) {
+        this.webClient = webClient;
+    }
 
     public AccountDto get(String accountId) {
         var uri = UriComponentsBuilder.fromUriString(ACCOUNT_PATH)
@@ -25,7 +30,7 @@ public class AccountsHttpClient {
                 .uri(uri)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .onStatus(errorHandler::canBeHandled, errorHandler::handleError)
+                .onStatus(HttpStatus::isError, this::handle)
                 .bodyToMono(AccountDto.class)
                 .block();
     }
@@ -36,9 +41,13 @@ public class AccountsHttpClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve()
-                .onStatus(errorHandler::canBeHandled, errorHandler::handleError)
+                .onStatus(HttpStatus::isError, this::handle)
                 .bodyToMono(AccountCreatedDto.class)
                 .block();
+    }
+
+    private Mono<? extends Throwable> handle(ClientResponse clientResponse) {
+        return clientResponse.bodyToMono(AccountsProblem.class);
     }
 
 }

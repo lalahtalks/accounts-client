@@ -16,7 +16,8 @@
     "jsonBody": {
       "type": "urn:lalahtalks:problem:accounts:account-not-found",
       "title": "Account not found",
-      "status": 404
+      "status": 404,
+      "detail": "Some detail"
     }
   }
 }

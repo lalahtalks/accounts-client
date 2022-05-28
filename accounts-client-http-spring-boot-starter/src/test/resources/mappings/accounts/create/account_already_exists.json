@@ -25,7 +25,8 @@
     "jsonBody": {
       "type": "urn:lalahtalks:problem:accounts:account-already-exists",
       "title": "Account already exists",
-      "status": 409
+      "status": 409,
+      "detail": "Some detail"
     }
   }
 }

@@ -1,10 +1,5 @@
 package io.lalahtalks.accounts.client.http.contract;
 
-import lombok.NoArgsConstructor;
-
-import static lombok.AccessLevel.PRIVATE;
-
-@NoArgsConstructor(access = PRIVATE)
 public class AccountsHttpPaths {
 
     public static final String ACCOUNTS_PATH = "/accounts";
@@ -12,5 +7,9 @@ public class AccountsHttpPaths {
     public static final String ACCOUNT_ID_PLACEHOLDER = '{' + ACCOUNT_ID + '}';
     public static final String ACCOUNT_ID_PATH = '/' + ACCOUNT_ID_PLACEHOLDER;
     public static final String ACCOUNT_PATH = ACCOUNTS_PATH + ACCOUNT_ID_PATH;
+
+    private AccountsHttpPaths() {
+
+    }
 
 }

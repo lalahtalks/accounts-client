@@ -1,25 +1,50 @@
 package io.lalahtalks.accounts.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
 
 import java.time.Instant;
 
-@Data
-@Builder
-public class AccountDto {
+public record AccountDto(
+        @JsonProperty("id") String id,
+        @JsonProperty("email") String email,
+        @JsonProperty("username") String username,
+        @JsonProperty("createdAt") Instant createdAt) {
 
-    @JsonProperty("id")
-    private String id;
+    public static final class Builder {
 
-    @JsonProperty("email")
-    private String email;
+        private String id;
+        private String email;
+        private String username;
+        private Instant createdAt;
 
-    @JsonProperty("username")
-    private String username;
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
 
-    @JsonProperty("createdAt")
-    private Instant createdAt;
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder username(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public Builder createdAt(Instant createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public AccountDto build() {
+            return new AccountDto(id, email, username, createdAt);
+        }
+
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
 }

@@ -1,24 +1,14 @@
 package io.lalahtalks.accounts.client.http;
 
-import io.lalahtalks.accounts.client.http.exception.AccountNotFoundException;
-import io.lalahtalks.accounts.client.http.test.TestApplication;
+import io.lalahtalks.accounts.client.http.contract.problem.AccountNotFoundProblem;
+import io.lalahtalks.accounts.client.http.test.SpringContextAware;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.test.context.ActiveProfiles;
 
 import static io.lalahtalks.accounts.client.http.test.DataAccount.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@SpringBootTest(classes = TestApplication.class)
-@AutoConfigureWireMock(port = 0)
-@ActiveProfiles("test")
-class GetAccountTest {
-
-    @Autowired
-    private AccountsHttpClient accountsHttpClient;
+class GetAccountTest extends SpringContextAware {
 
     @Test
     void it_works() {
@@ -28,8 +18,9 @@ class GetAccountTest {
 
     @Test
     void account_not_found() {
-        assertThatExceptionOfType(AccountNotFoundException.class)
-                .isThrownBy(() -> accountsHttpClient.get(ACCOUNT_2_ID_VALUE));
+        assertThatExceptionOfType(AccountNotFoundProblem.class)
+                .isThrownBy(() -> accountsHttpClient.get(ACCOUNT_2_ID_VALUE))
+                .withMessage("Account not found: Some detail");
     }
 
 }

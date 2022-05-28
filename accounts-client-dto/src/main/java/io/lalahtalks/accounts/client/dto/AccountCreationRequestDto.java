@@ -1,20 +1,41 @@
 package io.lalahtalks.accounts.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
 
-@Data
-@Builder
-public class AccountCreationRequestDto {
+public record AccountCreationRequestDto(
+        @JsonProperty("email") String email,
+        @JsonProperty("username") String username,
+        @JsonProperty("password") String password) {
 
-    @JsonProperty("email")
-    private String email;
+    public static final class Builder {
 
-    @JsonProperty("username")
-    private String username;
+        private String email;
+        private String username;
+        private String password;
 
-    @JsonProperty("password")
-    private String password;
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder username(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public AccountCreationRequestDto build() {
+            return new AccountCreationRequestDto(email, username, password);
+        }
+
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
 }
