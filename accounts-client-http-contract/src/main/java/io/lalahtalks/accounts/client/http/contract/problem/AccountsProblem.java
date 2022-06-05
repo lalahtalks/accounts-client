@@ -7,7 +7,9 @@ import org.zalando.problem.Status;
 
 import java.net.URI;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = PROPERTY, property = "type", visible = true, defaultImpl = UnknownAccountsProblem.class)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AccountAlreadyExistsProblem.class, name = AccountAlreadyExistsProblem.TYPE),
         @JsonSubTypes.Type(value = AccountNotFoundProblem.class, name = AccountNotFoundProblem.TYPE)})

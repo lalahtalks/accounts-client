@@ -10,6 +10,7 @@ public class DataAccount {
 
     public static final String ACCOUNT_1_ID_VALUE = "account_1";
     public static final String ACCOUNT_2_ID_VALUE = "account_2";
+    public static final String ACCOUNT_3_ID_VALUE = "account_3";
     public static final String ACCOUNT_1_EMAIL_VALUE = "test@test.com";
     public static final String ACCOUNT_1_USERNAME_VALUE = "User 1";
     public static final String A_PASSWORD = "my_password";

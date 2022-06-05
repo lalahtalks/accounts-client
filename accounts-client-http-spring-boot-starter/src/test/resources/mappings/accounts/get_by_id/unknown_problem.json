@@ -1,0 +1,23 @@
+{
+  "request": {
+    "urlPath": "/accounts/accounts/account_3",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer abc"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "type": "urn:lalahtalks:problem:accounts:unknown-problem",
+      "title": "Unknown problem",
+      "status": 400,
+      "detail": "Some detail"
+    }
+  }
+}
