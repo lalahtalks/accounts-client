@@ -15,29 +15,23 @@ public class DataAccount {
     public static final String ACCOUNT_1_USERNAME_VALUE = "User 1";
     public static final String A_PASSWORD = "my_password";
 
-    public static final AccountDto ACCOUNT_1_DTO = AccountDto.builder()
-            .id(ACCOUNT_1_ID_VALUE)
-            .email(ACCOUNT_1_EMAIL_VALUE)
-            .username(ACCOUNT_1_USERNAME_VALUE)
-            .createdAt(NOW)
-            .build();
+    public static final AccountDto ACCOUNT_1_DTO = new AccountDto(
+            ACCOUNT_1_ID_VALUE,
+            ACCOUNT_1_EMAIL_VALUE,
+            ACCOUNT_1_USERNAME_VALUE,
+            NOW);
 
-    public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_1_DTO = AccountCreationRequestDto.builder()
-            .email(ACCOUNT_1_EMAIL_VALUE)
-            .username(ACCOUNT_1_USERNAME_VALUE)
-            .password(A_PASSWORD)
-            .build();
+    public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_1_DTO = new AccountCreationRequestDto(
+            ACCOUNT_1_EMAIL_VALUE,
+            ACCOUNT_1_USERNAME_VALUE,
+            A_PASSWORD);
 
-    public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_2_DTO = AccountCreationRequestDto.builder()
-            .email("already_exists@test.com")
-            .username(ACCOUNT_1_USERNAME_VALUE)
-            .password(A_PASSWORD)
-            .build();
+    public static final AccountCreationRequestDto ACCOUNT_CREATION_REQUEST_2_DTO = new AccountCreationRequestDto(
+            "already_exists@test.com",
+            ACCOUNT_1_USERNAME_VALUE,
+            A_PASSWORD);
 
-    public static final AccountCreatedDto ACCOUNT_CREATED_DTO = AccountCreatedDto.builder()
-            .accountId(ACCOUNT_1_ID_VALUE)
-            .createdAt(NOW)
-            .build();
+    public static final AccountCreatedDto ACCOUNT_CREATED_DTO = new AccountCreatedDto(ACCOUNT_1_ID_VALUE, NOW);
 
     private DataAccount() {
 
