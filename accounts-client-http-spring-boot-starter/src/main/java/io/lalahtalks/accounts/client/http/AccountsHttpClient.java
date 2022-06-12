@@ -22,7 +22,7 @@ public class AccountsHttpClient {
         this.webClient = webClient;
     }
 
-    public AccountDto get(String accountId) {
+    public Mono<AccountDto> get(String accountId) {
         var uri = UriComponentsBuilder.fromUriString(ACCOUNT_PATH)
                 .buildAndExpand(accountId)
                 .toUriString();
@@ -31,19 +31,17 @@ public class AccountsHttpClient {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatus::isError, this::handle)
-                .bodyToMono(AccountDto.class)
-                .block();
+                .bodyToMono(AccountDto.class);
     }
 
-    public AccountCreatedDto create(AccountCreationRequestDto request) {
+    public Mono<AccountCreatedDto> create(AccountCreationRequestDto request) {
         return webClient.post()
                 .uri(ACCOUNTS_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve()
                 .onStatus(HttpStatus::isError, this::handle)
-                .bodyToMono(AccountCreatedDto.class)
-                .block();
+                .bodyToMono(AccountCreatedDto.class);
     }
 
     private Mono<? extends Throwable> handle(ClientResponse clientResponse) {
